@@ -1,11 +1,11 @@
 package edu.cmu.odw.service;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.net.URI;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import edu.cmu.odw.model.Author;
 
@@ -17,16 +17,13 @@ public class AuthorServiceImpl implements AuthorService {
 	
 	@Override
 	public Author findByName(String name) {
-		RestTemplate rt = new RestTemplate();
-		String uri = authorServiceUri + "/api/author/byname?query=";
-		
-		try {
-			uri = uri + URLEncoder.encode(name,"UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		
-		Author author = rt.getForObject(uri, Author.class);
+		RestTemplate rt = new RestTemplate(); 
+		URI apiUrl = UriComponentsBuilder.fromUriString(authorServiceUri)
+				.path("/api/author/byname")
+				.queryParam("query", name)
+				.build()
+				.toUri();
+		Author author = rt.getForObject(apiUrl, Author.class);
 		
 		return author;
 	}

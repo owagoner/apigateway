@@ -1,6 +1,5 @@
 package edu.cmu.odw.model;
 
-
 public class Author {
 
     private Long id;

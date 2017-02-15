@@ -16,8 +16,8 @@ import edu.cmu.odw.service.QuoteService;
 public class QuoteController {
 
 	@Autowired
-	private QuoteService quoteService;	
-
+	private QuoteService quoteService;
+	
 	@RequestMapping("/api/quote/random")
 	public Quote random() {
 		return quoteService.randomQuote();
@@ -31,8 +31,8 @@ public class QuoteController {
 	@RequestMapping(value = "/api/quote", method = RequestMethod.POST)
 	public void saveQuote(@RequestBody Quote quote) {
 		System.out.println(quote);
-
-		//Author a = authorService.findByName(quote.getAuthor().getName());
+        //String authorName = quote.getAuthor().getName();
+		//Author a = authorService.findByName(authorName);
 
 		//if (a == null) {
 		//	System.out.println("Saving author");
