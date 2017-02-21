@@ -1,0 +1,11 @@
+server:
+  port: 8080
+eureka:
+  client:
+    service-url: 
+      defaultZone: http://owagoner:Password123@localhost:8761/eureka/
+service:
+  quote: 
+    uri: "http://localhost:8082"
+  author:
+    uri: "http://localhost:8081"
